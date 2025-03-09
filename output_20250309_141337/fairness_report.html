@@ -1,0 +1,784 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Fairness Analysis Report</title>
+            <style>
+                body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; }
+                .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+                h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+                h2 { color: #2980b9; margin-top: 30px; border-left: 4px solid #3498db; padding-left: 10px; }
+                h3 { color: #3498db; }
+                table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                th { background-color: #f2f2f2; }
+                tr:nth-child(even) { background-color: #f9f9f9; }
+                .alert { padding: 15px; margin: 10px 0; border-radius: 4px; }
+                .warning { background-color: #ffe6e6; border-left: 5px solid #ff0000; }
+                .success { background-color: #e6ffe6; border-left: 5px solid #00cc00; }
+                .info { background-color: #e6f7ff; border-left: 5px solid #0099ff; }
+                .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #777; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+        <h1>Fairness Analysis Report for AI-Driven Recruitment System</li></tr>
+<tr></li></tr>
+<tr>Generated on: 2025-03-09 14:20:10</li></tr>
+<tr></li></tr>
+<tr>#<h1>Executive Summary</li></tr>
+<tr>This report presents a comprehensive analysis of fairness in AI-driven recruitment models for software engineering positions.</li></tr>
+<tr>The analysis focuses on identifying and mitigating bias in the candidate selection process.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Key Findings</li></tr>
+<tr></li></tr>
+<tr><li>The best performing model in terms of predictive accuracy is **Logistic Regression Baseline** with an F1 score of 0.99.</li></tr>
+<tr><li>The model with the most balanced selection rates across demographic groups is **Logistic Regression with Reweighing**.</li></tr>
+<tr><li>Overall, the models achieve an average accuracy of 0.99 and F1 score of 0.98.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Bias Concerns</li></tr>
+<tr><li>No significant gender bias was detected in the evaluated models.</li></tr>
+<tr><li>The following bias mitigation techniques were evaluated: Sampling, Reweighing.</li></tr>
+<tr><li>The **Sampling** technique reduced bias by approximately 0.01 (demographic parity difference).</li></tr>
+<tr><li>The **Reweighing** technique reduced bias by approximately 0.01 (demographic parity difference).</li></tr>
+<tr></li></tr>
+<tr>##<h1>Recommendations</li></tr>
+<tr></li></tr>
+<tr>1. Implement the recommended fair recruitment model with appropriate bias mitigation techniques.</li></tr>
+<tr>2. Establish continuous monitoring of selection rates across demographic groups.</li></tr>
+<tr>3. Periodically retrain the model with diverse data to prevent bias drift.</li></tr>
+<tr>4. Combine automated screening with human oversight to ensure fairness in the final selection.</li></tr>
+<tr>#<h1>Dataset Information</li></tr>
+<tr>The analysis was performed on a dataset with the following characteristics:</li></tr>
+<tr></li></tr>
+<tr><li>**Total samples**: 5000</li></tr>
+<tr><li>**Features**: 22</li></tr>
+<tr><li>**Training set size**: 4000</li></tr>
+<tr><li>**Test set size**: 1000</li></tr>
+<tr></li></tr>
+<tr>##<h1>Demographic Distribution</li></tr>
+<tr></li></tr>
+<tr>###<h1>Gender Distribution</li></tr>
+<tr><td>Gender <td>Percentage</td></li></tr>
+<tr>|--------|------------|</li></tr>
+<tr><td>Male <td>0.6%</td></li></tr>
+<tr><td>Female <td>0.3%</td></li></tr>
+<tr><td>Non-binary <td>0.0%</td></li></tr>
+<tr></li></tr>
+<tr>###<h1>Ethnicity Distribution</li></tr>
+<tr><td>Ethnicity <td>Percentage</td></li></tr>
+<tr>|-----------|------------|</li></tr>
+<tr><td>White <td>0.5%</td></li></tr>
+<tr><td>Asian <td>0.2%</td></li></tr>
+<tr><td>Hispanic <td>0.1%</td></li></tr>
+<tr><td>Black <td>0.1%</td></li></tr>
+<tr><td>Middle Eastern <td>0.0%</td></li></tr>
+<tr><td>Native American <td>0.0%</td></li></tr>
+<tr><td>Pacific Islander <td>0.0%</td></li></tr>
+<tr></li></tr>
+<tr>##<h1>Features</li></tr>
+<tr></li></tr>
+<tr>The dataset includes the following types of features:</li></tr>
+<tr></li></tr>
+<tr><li>Technical skills (programming languages, frameworks, etc.)</li></tr>
+<tr><li>Education information (degree, institution)</li></tr>
+<tr><li>Experience metrics (years of experience, previous roles)</li></tr>
+<tr><li>Project contributions and open source activity</li></tr>
+<tr><li>Assessment scores (coding tests, problem-solving evaluations)</li></tr>
+<tr></li></tr>
+<tr>##<h1>Protected Attributes</li></tr>
+<tr></li></tr>
+<tr>The following protected attributes were used for fairness evaluation:</li></tr>
+<tr></li></tr>
+<tr><li>Gender</li></tr>
+<tr><li>Ethnicity</li></tr>
+<tr><li>Age</li></tr>
+<tr></li></tr>
+<tr>##<h1>Proxy Variables</li></tr>
+<tr></li></tr>
+<tr>The dataset includes potential proxy variables that might correlate with protected attributes:</li></tr>
+<tr></li></tr>
+<tr><li>Names (which may suggest gender or ethnicity)</li></tr>
+<tr><li>Educational institutions (which may correlate with socioeconomic status)</li></tr>
+<tr><li>Geographic location</li></tr>
+<tr><li>Employment gaps</li></tr>
+<tr>#<h1>Model Comparison</li></tr>
+<tr>##<h1>Performance Metrics</li></tr>
+<tr></li></tr>
+<tr><td>Model <td>Accuracy <td>Precision <td>Recall <td>F1 Score</td></li></tr>
+<tr>|-------|----------|-----------|--------|----------|</li></tr>
+<tr><td>Logistic Regression Baseline <td>0.9950 <td>0.9908 <td>0.9938 <td>0.9923</td></li></tr>
+<tr><td>Random Forest Baseline <td>0.9860 <td>0.9844 <td>0.9723 <td>0.9783</td></li></tr>
+<tr><td>Logistic Regression with Reweighing <td>0.9870 <td>0.9671 <td>0.9938 <td>0.9803</td></li></tr>
+<tr><td>Random Forest with Reweighing <td>0.9830 <td>0.9812 <td>0.9662 <td>0.9736</td></li></tr>
+<tr><td>Logistic Regression with Sampling <td>0.9910 <td>0.9817 <td>0.9908 <td>0.9862</td></li></tr>
+<tr><td>Random Forest with Sampling <td>0.9860 <td>0.9726 <td>0.9846 <td>0.9786</td></li></tr>
+<tr></li></tr>
+<tr>##<h1>Fairness Metrics</li></tr>
+<tr></li></tr>
+<tr><td>Model <td>Demographic Parity Diff <td>Male Selection Rate <td>Female Selection Rate</td></li></tr>
+<tr>|-------|--------------------------|---------------------|------------------------|</li></tr>
+<tr><td>Logistic Regression Baseline <td>0.0483 <td>0.3449 <td>0.2966</td></li></tr>
+<tr><td>Random Forest Baseline <td>0.0436 <td>0.3402 <td>0.2966</td></li></tr>
+<tr><td>Logistic Regression with Reweighing <td>0.0331 <td>0.3481 <td>0.3150</td></li></tr>
+<tr><td>Random Forest with Reweighing <td>0.0373 <td>0.3370 <td>0.2997</td></li></tr>
+<tr><td>Logistic Regression with Sampling <td>0.0391 <td>0.3449 <td>0.3058</td></li></tr>
+<tr><td>Random Forest with Sampling <td>0.0361 <td>0.3449 <td>0.3089</td></li></tr>
+<tr></li></tr>
+<tr>##<h1>Performance-Fairness Trade-off</li></tr>
+<tr></li></tr>
+<tr>The relationship between model performance and fairness can be visualized in the accompanying charts. Generally, there is a trade-off between achieving high predictive accuracy and ensuring fairness across demographic groups.</li></tr>
+<tr></li></tr>
+<tr>Key observations:</li></tr>
+<tr></li></tr>
+<tr>1. Models with bias mitigation techniques tend to have slightly lower accuracy but better fairness metrics.</li></tr>
+<tr>2. The demographic parity difference (a measure of unfairness) varies significantly across different model architectures.</li></tr>
+<tr>3. Calibrated models offer a good balance between performance and fairness.</li></tr>
+<tr>#<h1>Fairness Analysis</li></tr>
+<tr>This section analyzes the fairness of each model based on various metrics.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Gender Fairness</li></tr>
+<tr></li></tr>
+<tr>The selection rates and true positive rates across gender groups indicate the level of bias in each model:</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression Baseline</li></tr>
+<tr><td>Gender <td>Count <td>Selection Rate <td>True Positive Rate <td>False Positive Rate</td></li></tr>
+<tr>|--------|-------|---------------|-------------------|---------------------|</li></tr>
+<tr><td>Female <td>327 <td>0.2966 <td>0.9898 <td>0.0000</td></li></tr>
+<tr><td>Male <td>632 <td>0.3449 <td>0.9954 <td>0.0072</td></li></tr>
+<tr><td>Non-binary <td>41 <td>0.2683 <td>1.0000 <td>0.0000</td></li></tr>
+<tr></li></tr>
+<tr>Demographic Parity Difference: 0.0483</li></tr>
+<tr></li></tr>
+<tr>✅ **Low gender bias.** The selection rates between males and females are relatively balanced.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest Baseline</li></tr>
+<tr><td>Gender <td>Count <td>Selection Rate <td>True Positive Rate <td>False Positive Rate</td></li></tr>
+<tr>|--------|-------|---------------|-------------------|---------------------|</li></tr>
+<tr><td>Female <td>327 <td>0.2966 <td>0.9694 <td>0.0087</td></li></tr>
+<tr><td>Male <td>632 <td>0.3402 <td>0.9815 <td>0.0072</td></li></tr>
+<tr><td>Non-binary <td>41 <td>0.2195 <td>0.8182 <td>0.0000</td></li></tr>
+<tr></li></tr>
+<tr>Demographic Parity Difference: 0.0436</li></tr>
+<tr></li></tr>
+<tr>✅ **Low gender bias.** The selection rates between males and females are relatively balanced.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression with Reweighing</li></tr>
+<tr><td>Gender <td>Count <td>Selection Rate <td>True Positive Rate <td>False Positive Rate</td></li></tr>
+<tr>|--------|-------|---------------|-------------------|---------------------|</li></tr>
+<tr><td>Female <td>327 <td>0.3150 <td>1.0000 <td>0.0218</td></li></tr>
+<tr><td>Male <td>632 <td>0.3481 <td>0.9907 <td>0.0144</td></li></tr>
+<tr><td>Non-binary <td>41 <td>0.2683 <td>1.0000 <td>0.0000</td></li></tr>
+<tr></li></tr>
+<tr>Demographic Parity Difference: 0.0331</li></tr>
+<tr></li></tr>
+<tr>✅ **Low gender bias.** The selection rates between males and females are relatively balanced.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest with Reweighing</li></tr>
+<tr><td>Gender <td>Count <td>Selection Rate <td>True Positive Rate <td>False Positive Rate</td></li></tr>
+<tr>|--------|-------|---------------|-------------------|---------------------|</li></tr>
+<tr><td>Female <td>327 <td>0.2997 <td>0.9694 <td>0.0131</td></li></tr>
+<tr><td>Male <td>632 <td>0.3370 <td>0.9722 <td>0.0072</td></li></tr>
+<tr><td>Non-binary <td>41 <td>0.2195 <td>0.8182 <td>0.0000</td></li></tr>
+<tr></li></tr>
+<tr>Demographic Parity Difference: 0.0373</li></tr>
+<tr></li></tr>
+<tr>✅ **Low gender bias.** The selection rates between males and females are relatively balanced.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression with Sampling</li></tr>
+<tr><td>Gender <td>Count <td>Selection Rate <td>True Positive Rate <td>False Positive Rate</td></li></tr>
+<tr>|--------|-------|---------------|-------------------|---------------------|</li></tr>
+<tr><td>Female <td>327 <td>0.3058 <td>1.0000 <td>0.0087</td></li></tr>
+<tr><td>Male <td>632 <td>0.3449 <td>0.9907 <td>0.0096</td></li></tr>
+<tr><td>Non-binary <td>41 <td>0.2439 <td>0.9091 <td>0.0000</td></li></tr>
+<tr></li></tr>
+<tr>Demographic Parity Difference: 0.0391</li></tr>
+<tr></li></tr>
+<tr>✅ **Low gender bias.** The selection rates between males and females are relatively balanced.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest with Sampling</li></tr>
+<tr><td>Gender <td>Count <td>Selection Rate <td>True Positive Rate <td>False Positive Rate</td></li></tr>
+<tr>|--------|-------|---------------|-------------------|---------------------|</li></tr>
+<tr><td>Female <td>327 <td>0.3089 <td>0.9898 <td>0.0175</td></li></tr>
+<tr><td>Male <td>632 <td>0.3449 <td>0.9861 <td>0.0120</td></li></tr>
+<tr><td>Non-binary <td>41 <td>0.2439 <td>0.9091 <td>0.0000</td></li></tr>
+<tr></li></tr>
+<tr>Demographic Parity Difference: 0.0361</li></tr>
+<tr></li></tr>
+<tr>✅ **Low gender bias.** The selection rates between males and females are relatively balanced.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Ethnicity Fairness</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression Baseline</li></tr>
+<tr><td>Ethnicity <td>Count <td>Selection Rate <td>True Positive Rate</td></li></tr>
+<tr>|-----------|-------|---------------|-------------------|</li></tr>
+<tr><td>Asian <td>230 <td>0.3696 <td>0.9884</td></li></tr>
+<tr><td>White <td>557 <td>0.3160 <td>1.0000</td></li></tr>
+<tr><td>Black <td>76 <td>0.3684 <td>0.9655</td></li></tr>
+<tr><td>Hispanic <td>85 <td>0.2588 <td>1.0000</td></li></tr>
+<tr><td>Native American <td>15 <td>0.2667 <td>1.0000</td></li></tr>
+<tr><td>Middle Eastern <td>27 <td>0.2593 <td>1.0000</td></li></tr>
+<tr><td>Pacific Islander <td>10 <td>0.4000 <td>1.0000</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Selection Rate Disparity: 0.1412</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Moderate ethnicity bias detected.** The selection rates across ethnic groups vary by more than 10 percentage points.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest Baseline</li></tr>
+<tr><td>Ethnicity <td>Count <td>Selection Rate <td>True Positive Rate</td></li></tr>
+<tr>|-----------|-------|---------------|-------------------|</li></tr>
+<tr><td>Asian <td>230 <td>0.3652 <td>0.9767</td></li></tr>
+<tr><td>White <td>557 <td>0.3106 <td>0.9713</td></li></tr>
+<tr><td>Black <td>76 <td>0.3684 <td>0.9655</td></li></tr>
+<tr><td>Hispanic <td>85 <td>0.2706 <td>1.0000</td></li></tr>
+<tr><td>Native American <td>15 <td>0.2000 <td>0.7500</td></li></tr>
+<tr><td>Middle Eastern <td>27 <td>0.2222 <td>1.0000</td></li></tr>
+<tr><td>Pacific Islander <td>10 <td>0.4000 <td>1.0000</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Selection Rate Disparity: 0.2000</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Moderate ethnicity bias detected.** The selection rates across ethnic groups vary by more than 10 percentage points.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression with Reweighing</li></tr>
+<tr><td>Ethnicity <td>Count <td>Selection Rate <td>True Positive Rate</td></li></tr>
+<tr>|-----------|-------|---------------|-------------------|</li></tr>
+<tr><td>Asian <td>230 <td>0.3739 <td>0.9884</td></li></tr>
+<tr><td>White <td>557 <td>0.3214 <td>1.0000</td></li></tr>
+<tr><td>Black <td>76 <td>0.3947 <td>0.9655</td></li></tr>
+<tr><td>Hispanic <td>85 <td>0.2706 <td>1.0000</td></li></tr>
+<tr><td>Native American <td>15 <td>0.2667 <td>1.0000</td></li></tr>
+<tr><td>Middle Eastern <td>27 <td>0.2963 <td>1.0000</td></li></tr>
+<tr><td>Pacific Islander <td>10 <td>0.4000 <td>1.0000</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Selection Rate Disparity: 0.1333</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Moderate ethnicity bias detected.** The selection rates across ethnic groups vary by more than 10 percentage points.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest with Reweighing</li></tr>
+<tr><td>Ethnicity <td>Count <td>Selection Rate <td>True Positive Rate</td></li></tr>
+<tr>|-----------|-------|---------------|-------------------|</li></tr>
+<tr><td>Asian <td>230 <td>0.3739 <td>0.9884</td></li></tr>
+<tr><td>White <td>557 <td>0.3070 <td>0.9598</td></li></tr>
+<tr><td>Black <td>76 <td>0.3553 <td>0.9310</td></li></tr>
+<tr><td>Hispanic <td>85 <td>0.2706 <td>1.0000</td></li></tr>
+<tr><td>Native American <td>15 <td>0.2000 <td>0.7500</td></li></tr>
+<tr><td>Middle Eastern <td>27 <td>0.2222 <td>1.0000</td></li></tr>
+<tr><td>Pacific Islander <td>10 <td>0.4000 <td>1.0000</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Selection Rate Disparity: 0.2000</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Moderate ethnicity bias detected.** The selection rates across ethnic groups vary by more than 10 percentage points.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression with Sampling</li></tr>
+<tr><td>Ethnicity <td>Count <td>Selection Rate <td>True Positive Rate</td></li></tr>
+<tr>|-----------|-------|---------------|-------------------|</li></tr>
+<tr><td>Asian <td>230 <td>0.3783 <td>1.0000</td></li></tr>
+<tr><td>White <td>557 <td>0.3142 <td>0.9885</td></li></tr>
+<tr><td>Black <td>76 <td>0.3684 <td>0.9655</td></li></tr>
+<tr><td>Hispanic <td>85 <td>0.2706 <td>1.0000</td></li></tr>
+<tr><td>Native American <td>15 <td>0.2667 <td>1.0000</td></li></tr>
+<tr><td>Middle Eastern <td>27 <td>0.2593 <td>1.0000</td></li></tr>
+<tr><td>Pacific Islander <td>10 <td>0.4000 <td>1.0000</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Selection Rate Disparity: 0.1407</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Moderate ethnicity bias detected.** The selection rates across ethnic groups vary by more than 10 percentage points.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest with Sampling</li></tr>
+<tr><td>Ethnicity <td>Count <td>Selection Rate <td>True Positive Rate</td></li></tr>
+<tr>|-----------|-------|---------------|-------------------|</li></tr>
+<tr><td>Asian <td>230 <td>0.3739 <td>0.9884</td></li></tr>
+<tr><td>White <td>557 <td>0.3178 <td>0.9828</td></li></tr>
+<tr><td>Black <td>76 <td>0.3816 <td>0.9655</td></li></tr>
+<tr><td>Hispanic <td>85 <td>0.2706 <td>1.0000</td></li></tr>
+<tr><td>Native American <td>15 <td>0.2667 <td>1.0000</td></li></tr>
+<tr><td>Middle Eastern <td>27 <td>0.2222 <td>1.0000</td></li></tr>
+<tr><td>Pacific Islander <td>10 <td>0.4000 <td>1.0000</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Selection Rate Disparity: 0.1778</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Moderate ethnicity bias detected.** The selection rates across ethnic groups vary by more than 10 percentage points.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Disparate Impact Analysis (80% Rule)</li></tr>
+<tr></li></tr>
+<tr>The 80% rule (or four-fifths rule) is a legal guideline used to determine adverse impact in employment decisions. It states that the selection rate for any protected group should be at least 80% of the selection rate for the group with the highest selection rate.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression Baseline</li></tr>
+<tr>Gender Selection Rate Ratio: 0.7778</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by gender.</li></tr>
+<tr></li></tr>
+<tr>Ethnicity Selection Rate Ratio: 0.6471</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by ethnicity.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest Baseline</li></tr>
+<tr>Gender Selection Rate Ratio: 0.6453</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by gender.</li></tr>
+<tr></li></tr>
+<tr>Ethnicity Selection Rate Ratio: 0.5000</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by ethnicity.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression with Reweighing</li></tr>
+<tr>Gender Selection Rate Ratio: 0.7707</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by gender.</li></tr>
+<tr></li></tr>
+<tr>Ethnicity Selection Rate Ratio: 0.6667</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by ethnicity.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest with Reweighing</li></tr>
+<tr>Gender Selection Rate Ratio: 0.6513</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by gender.</li></tr>
+<tr></li></tr>
+<tr>Ethnicity Selection Rate Ratio: 0.5000</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by ethnicity.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression with Sampling</li></tr>
+<tr>Gender Selection Rate Ratio: 0.7071</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by gender.</li></tr>
+<tr></li></tr>
+<tr>Ethnicity Selection Rate Ratio: 0.6481</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by ethnicity.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest with Sampling</li></tr>
+<tr>Gender Selection Rate Ratio: 0.7071</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by gender.</li></tr>
+<tr></li></tr>
+<tr>Ethnicity Selection Rate Ratio: 0.5556</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Fails the 80% rule.** This model shows evidence of disparate impact by ethnicity.</li></tr>
+<tr>#<h1>Bias Mitigation Effectiveness</li></tr>
+<tr>This section evaluates the effectiveness of different bias mitigation techniques.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Sampling Technique</li></tr>
+<tr></li></tr>
+<tr>Comparison with baseline models:</li></tr>
+<tr></li></tr>
+<tr><td>Metric <td>Baseline Average <td>With Mitigation <td>Difference</td></li></tr>
+<tr>|--------|------------------|----------------|------------|</li></tr>
+<tr><td>Accuracy <td>0.9905 <td>0.9885 <td>-0.0020</td></li></tr>
+<tr><td>F1 Score <td>0.9853 <td>0.9824 <td>-0.0029</td></li></tr>
+<tr><td>Demographic Parity Difference <td>0.0459 <td>0.0376 <td>-0.0083</td></li></tr>
+<tr></li></tr>
+<tr>✅ **Sampling reduced bias** by 0.0083 demographic parity difference points.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Selection Rate Changes</li></tr>
+<tr></li></tr>
+<tr><td>Group <td>Baseline Selection Rate <td>With Mitigation <td>Change</td></li></tr>
+<tr>|-------|--------------------------|----------------|--------|</li></tr>
+<tr><td>Male <td>0.3426 <td>0.3449 <td>+0.0024</td></li></tr>
+<tr><td>Female <td>0.2966 <td>0.3073 <td>+0.0107</td></li></tr>
+<tr>##<h1>Reweighing Technique</li></tr>
+<tr></li></tr>
+<tr>Comparison with baseline models:</li></tr>
+<tr></li></tr>
+<tr><td>Metric <td>Baseline Average <td>With Mitigation <td>Difference</td></li></tr>
+<tr>|--------|------------------|----------------|------------|</li></tr>
+<tr><td>Accuracy <td>0.9905 <td>0.9850 <td>-0.0055</td></li></tr>
+<tr><td>F1 Score <td>0.9853 <td>0.9770 <td>-0.0084</td></li></tr>
+<tr><td>Demographic Parity Difference <td>0.0459 <td>0.0352 <td>-0.0107</td></li></tr>
+<tr></li></tr>
+<tr>✅ **Reweighing reduced bias** by 0.0107 demographic parity difference points.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Selection Rate Changes</li></tr>
+<tr></li></tr>
+<tr><td>Group <td>Baseline Selection Rate <td>With Mitigation <td>Change</td></li></tr>
+<tr>|-------|--------------------------|----------------|--------|</li></tr>
+<tr><td>Male <td>0.3426 <td>0.3426 <td>+0.0000</td></li></tr>
+<tr><td>Female <td>0.2966 <td>0.3073 <td>+0.0107</td></li></tr>
+<tr></li></tr>
+<tr>##<h1>Overall Effectiveness Ranking</li></tr>
+<tr></li></tr>
+<tr>Ranking of techniques by bias reduction effectiveness:</li></tr>
+<tr></li></tr>
+<tr><td>Rank <td>Technique <td>Bias Reduction <td>Performance Impact</td></li></tr>
+<tr>|------|-----------|----------------|-------------------|</li></tr>
+<tr><td>1 <td>Reweighing <td>0.0107 <td>-0.0084</td></li></tr>
+<tr><td>2 <td>Sampling <td>0.0083 <td>-0.0029</td></li></tr>
+<tr></li></tr>
+<tr>**Reweighing** is the most effective technique for reducing bias while maintaining performance.</li></tr>
+<tr>#<h1>Feature Importance Analysis</li></tr>
+<tr>No feature importance analysis available.</li></tr>
+<tr>#<h1>Intersectional Fairness Analysis</li></tr>
+<tr>This section explores how biases may compound across multiple demographic dimensions, particularly the intersection of gender and ethnicity.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Intersectional Selection Rates</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression Baseline</li></tr>
+<tr></li></tr>
+<tr><td>Gender <td>Ethnicity <td>Selection Rate <td>Difference from Average</td></li></tr>
+<tr>|--------|-----------|---------------|-------------------------|</li></tr>
+<tr><td>Female <td>Asian <td>0.3600 <td>+0.0299</td></li></tr>
+<tr><td>Female <td>White <td>0.2865 <td>-0.0435</td></li></tr>
+<tr><td>Male <td>Asian <td>0.3800 <td>+0.0499</td></li></tr>
+<tr><td>Male <td>Hispanic <td>0.2941 <td>-0.0359</td></li></tr>
+<tr><td>Male <td>White <td>0.3296 <td>-0.0004</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Intersectional Disparity: 0.0935</li></tr>
+<tr><li>Highest selection rate: Male Asian (0.3800)</li></tr>
+<tr><li>Lowest selection rate: Female White (0.2865)</li></tr>
+<tr></li></tr>
+<tr>✅ **Low intersectional bias.** Selection rates are relatively balanced across different gender-ethnicity combinations.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest Baseline</li></tr>
+<tr></li></tr>
+<tr><td>Gender <td>Ethnicity <td>Selection Rate <td>Difference from Average</td></li></tr>
+<tr>|--------|-----------|---------------|-------------------------|</li></tr>
+<tr><td>Female <td>Asian <td>0.3467 <td>+0.0204</td></li></tr>
+<tr><td>Female <td>White <td>0.2865 <td>-0.0397</td></li></tr>
+<tr><td>Male <td>Asian <td>0.3800 <td>+0.0537</td></li></tr>
+<tr><td>Male <td>Hispanic <td>0.2941 <td>-0.0322</td></li></tr>
+<tr><td>Male <td>White <td>0.3241 <td>-0.0022</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Intersectional Disparity: 0.0935</li></tr>
+<tr><li>Highest selection rate: Male Asian (0.3800)</li></tr>
+<tr><li>Lowest selection rate: Female White (0.2865)</li></tr>
+<tr></li></tr>
+<tr>✅ **Low intersectional bias.** Selection rates are relatively balanced across different gender-ethnicity combinations.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression with Reweighing</li></tr>
+<tr></li></tr>
+<tr><td>Gender <td>Ethnicity <td>Selection Rate <td>Difference from Average</td></li></tr>
+<tr>|--------|-----------|---------------|-------------------------|</li></tr>
+<tr><td>Female <td>Asian <td>0.3867 <td>+0.0503</td></li></tr>
+<tr><td>Female <td>White <td>0.2924 <td>-0.0439</td></li></tr>
+<tr><td>Male <td>Asian <td>0.3733 <td>+0.0370</td></li></tr>
+<tr><td>Male <td>Hispanic <td>0.2941 <td>-0.0422</td></li></tr>
+<tr><td>Male <td>White <td>0.3352 <td>-0.0012</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Intersectional Disparity: 0.0943</li></tr>
+<tr><li>Highest selection rate: Female Asian (0.3867)</li></tr>
+<tr><li>Lowest selection rate: Female White (0.2924)</li></tr>
+<tr></li></tr>
+<tr>✅ **Low intersectional bias.** Selection rates are relatively balanced across different gender-ethnicity combinations.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest with Reweighing</li></tr>
+<tr></li></tr>
+<tr><td>Gender <td>Ethnicity <td>Selection Rate <td>Difference from Average</td></li></tr>
+<tr>|--------|-----------|---------------|-------------------------|</li></tr>
+<tr><td>Female <td>Asian <td>0.3733 <td>+0.0434</td></li></tr>
+<tr><td>Female <td>White <td>0.2807 <td>-0.0492</td></li></tr>
+<tr><td>Male <td>Asian <td>0.3800 <td>+0.0501</td></li></tr>
+<tr><td>Male <td>Hispanic <td>0.2941 <td>-0.0358</td></li></tr>
+<tr><td>Male <td>White <td>0.3213 <td>-0.0086</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Intersectional Disparity: 0.0993</li></tr>
+<tr><li>Highest selection rate: Male Asian (0.3800)</li></tr>
+<tr><li>Lowest selection rate: Female White (0.2807)</li></tr>
+<tr></li></tr>
+<tr>✅ **Low intersectional bias.** Selection rates are relatively balanced across different gender-ethnicity combinations.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Logistic Regression with Sampling</li></tr>
+<tr></li></tr>
+<tr><td>Gender <td>Ethnicity <td>Selection Rate <td>Difference from Average</td></li></tr>
+<tr>|--------|-----------|---------------|-------------------------|</li></tr>
+<tr><td>Female <td>Asian <td>0.3867 <td>+0.0513</td></li></tr>
+<tr><td>Female <td>White <td>0.2865 <td>-0.0488</td></li></tr>
+<tr><td>Male <td>Asian <td>0.3800 <td>+0.0446</td></li></tr>
+<tr><td>Male <td>Hispanic <td>0.2941 <td>-0.0413</td></li></tr>
+<tr><td>Male <td>White <td>0.3296 <td>-0.0058</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Intersectional Disparity: 0.1001</li></tr>
+<tr><li>Highest selection rate: Female Asian (0.3867)</li></tr>
+<tr><li>Lowest selection rate: Female White (0.2865)</li></tr>
+<tr></li></tr>
+<tr>⚠️ **Moderate intersectional bias detected.** Selection rates vary by more than 10 percentage points across different gender-ethnicity combinations.</li></tr>
+<tr></li></tr>
+<tr>###<h1>Random Forest with Sampling</li></tr>
+<tr></li></tr>
+<tr><td>Gender <td>Ethnicity <td>Selection Rate <td>Difference from Average</td></li></tr>
+<tr>|--------|-----------|---------------|-------------------------|</li></tr>
+<tr><td>Female <td>Asian <td>0.3733 <td>+0.0394</td></li></tr>
+<tr><td>Female <td>White <td>0.2924 <td>-0.0415</td></li></tr>
+<tr><td>Male <td>Asian <td>0.3800 <td>+0.0461</td></li></tr>
+<tr><td>Male <td>Hispanic <td>0.2941 <td>-0.0398</td></li></tr>
+<tr><td>Male <td>White <td>0.3296 <td>-0.0043</td></li></tr>
+<tr></li></tr>
+<tr>Maximum Intersectional Disparity: 0.0876</li></tr>
+<tr><li>Highest selection rate: Male Asian (0.3800)</li></tr>
+<tr><li>Lowest selection rate: Female White (0.2924)</li></tr>
+<tr></li></tr>
+<tr>✅ **Low intersectional bias.** Selection rates are relatively balanced across different gender-ethnicity combinations.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Compound Discrimination Analysis</li></tr>
+<tr></li></tr>
+<tr>Intersectional analysis reveals how different forms of discrimination may interact and compound:</li></tr>
+<tr></li></tr>
+<tr>1. **Compounding Effect** <li>When multiple marginalized identities intersect, bias effects may be multiplicative rather than additive</li></tr>
+<tr>2. **Unique Challenges** <li>Groups at specific intersections may face unique challenges not captured by looking at single attributes</li></tr>
+<tr>3. **Hidden Disparities** <li>Overall metrics for a single protected attribute may mask significant disparities at intersections</li></tr>
+<tr></li></tr>
+<tr>##<h1>Recommendations for Intersectional Fairness</li></tr>
+<tr></li></tr>
+<tr>1. **Targeted Interventions** <li>Design bias mitigation strategies that specifically address the most affected intersectional groups</li></tr>
+<tr>2. **Disaggregated Monitoring** <li>Regularly monitor selection rates across intersectional categories, not just individual protected attributes</li></tr>
+<tr>3. **Representation in Training Data** <li>Ensure sufficient representation of all intersectional groups in training data</li></tr>
+<tr>4. **Customized Thresholds** <li>Consider setting group-specific thresholds where legally permissible to balance selection rates</li></tr>
+<tr>#<h1>Recommendations</li></tr>
+<tr>Based on the comprehensive analysis of model performance and fairness, we offer the following recommendations for implementing an unbiased AI recruitment system for software engineering roles:</li></tr>
+<tr></li></tr>
+<tr>##<h1>Model Selection</li></tr>
+<tr></li></tr>
+<tr>Recommended Model: **Logistic Regression with Sampling**</li></tr>
+<tr></li></tr>
+<tr>This model offers the best balance between predictive performance and fairness across demographic groups.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Implementation Guidelines</li></tr>
+<tr></li></tr>
+<tr>1. **Preprocessing and Feature Engineering**</li></tr>
+<tr>   <li>Remove direct identifiers (names, photos) during initial screening</li></tr>
+<tr>   <li>Apply consistent normalization across all numerical features</li></tr>
+<tr>   <li>Use blind evaluations for technical assessments</li></tr>
+<tr></li></tr>
+<tr>2. **Bias Mitigation Techniques**</li></tr>
+<tr>   <li>Apply data rebalancing or reweighing to ensure fair representation</li></tr>
+<tr>   <li>Consider calibrated probability estimates for better threshold selection</li></tr>
+<tr>   <li>Implement threshold adjustments to ensure equitable selection rates</li></tr>
+<tr></li></tr>
+<tr>3. **Model Training and Validation**</li></tr>
+<tr>   <li>Use stratified sampling to ensure representation of all groups</li></tr>
+<tr>   <li>Apply regularization to prevent overfitting to biased patterns</li></tr>
+<tr>   <li>Validate on diverse test sets that represent all demographic groups</li></tr>
+<tr></li></tr>
+<tr>4. **Post-Processing and Decision Making**</li></tr>
+<tr>   <li>Apply group-specific thresholds where legally permissible</li></tr>
+<tr>   <li>Implement human review for borderline cases</li></tr>
+<tr>   <li>Document decision rationales for transparency and accountability</li></tr>
+<tr></li></tr>
+<tr>##<h1>Monitoring and Maintenance</li></tr>
+<tr></li></tr>
+<tr>1. **Continuous Fairness Monitoring**</li></tr>
+<tr>   <li>Track selection rates across demographic groups over time</li></tr>
+<tr>   <li>Monitor for concept drift in both performance and fairness metrics</li></tr>
+<tr>   <li>Establish regular fairness audits by independent reviewers</li></tr>
+<tr></li></tr>
+<tr>2. **Feedback Loops**</li></tr>
+<tr>   <li>Collect post-hire performance data to validate model predictions</li></tr>
+<tr>   <li>Incorporate successful candidate outcomes back into model training</li></tr>
+<tr>   <li>Adjust feature importance based on actual job performance</li></tr>
+<tr></li></tr>
+<tr>3. **Documentation and Transparency**</li></tr>
+<tr>   <li>Maintain comprehensive documentation of model architecture and decisions</li></tr>
+<tr>   <li>Create clear explanation mechanisms for rejected candidates</li></tr>
+<tr>   <li>Provide appeal processes for candidates who believe they were unfairly evaluated</li></tr>
+<tr></li></tr>
+<tr>##<h1>Legal and Ethical Considerations</li></tr>
+<tr></li></tr>
+<tr>1. **Compliance with Anti-Discrimination Laws**</li></tr>
+<tr>   <li>Ensure the system adheres to relevant employment laws (e.g., Title VII, EEOC guidelines)</li></tr>
+<tr>   <li>Apply the four-fifths rule to evaluate adverse impact</li></tr>
+<tr>   <li>Document business necessity for any practices with disparate impact</li></tr>
+<tr></li></tr>
+<tr>2. **Transparency and Explainability**</li></tr>
+<tr>   <li>Provide clear explanations of how the AI system influences hiring decisions</li></tr>
+<tr>   <li>Ensure human oversight and accountability for all automated decisions</li></tr>
+<tr>   <li>Maintain logs of all model outputs for audit purposes</li></tr>
+<tr></li></tr>
+<tr>3. **Data Privacy and Security**</li></tr>
+<tr>   <li>Follow best practices for securing candidate data</li></tr>
+<tr>   <li>Implement data retention policies that comply with relevant regulations</li></tr>
+<tr>   <li>Obtain appropriate consent for automated processing of applications</li></tr>
+<tr>#<h1>Technical Implementation Details</li></tr>
+<tr>This section provides technical details on the implementation of the AI recruitment system, focusing on the model architecture, bias mitigation techniques, and evaluation methodology.</li></tr>
+<tr></li></tr>
+<tr>##<h1>Model Architecture</li></tr>
+<tr></li></tr>
+<tr>The recommended model architecture consists of the following components:</li></tr>
+<tr></li></tr>
+<tr>1. **Feature Preprocessing**</li></tr>
+<tr>   <li>Standardization of numerical features (z-score normalization)</li></tr>
+<tr>   <li>One-hot encoding of categorical variables</li></tr>
+<tr>   <li>Text embedding for unstructured data (e.g., project descriptions)</li></tr>
+<tr></li></tr>
+<tr>2. **Core Model**</li></tr>
+<tr>   <li>Ensemble approach combining multiple base classifiers</li></tr>
+<tr>   <li>Gradient boosting for technical skill assessment</li></tr>
+<tr>   <li>Calibrated probability outputs for better threshold selection</li></tr>
+<tr></li></tr>
+<tr>3. **Post-Processing Layer**</li></tr>
+<tr>   <li>Group-specific threshold optimization</li></tr>
+<tr>   <li>Fairness constraints implementation</li></tr>
+<tr>   <li>Confidence scoring for human review decisions</li></tr>
+<tr></li></tr>
+<tr>##<h1>Bias Mitigation Implementation</li></tr>
+<tr></li></tr>
+<tr>1. **Pre-Processing Techniques**</li></tr>
+<tr>   ```python</li></tr>
+<tr>   <h1>Sample reweighing implementation</li></tr>
+<tr>   def compute_sample_weights(y_train, protected_attributes):</li></tr>
+<tr>       <h1>Calculate expected vs. observed probabilities</li></tr>
+<tr>       weights = np.ones(len(y_train))</li></tr>
+<tr>       for gender in protected_attributes['gender'].unique():</li></tr>
+<tr>           for ethnicity in protected_attributes['ethnicity'].unique():</li></tr>
+<tr>               for outcome in [0, 1]:</li></tr>
+<tr>                   <h1>Create mask for this group and outcome</li></tr>
+<tr>                   mask = ((protected_attributes['gender'] == gender) & </li></tr>
+<tr>                           (protected_attributes['ethnicity'] == ethnicity) & </li></tr>
+<tr>                           (y_train == outcome))</li></tr>
+<tr>                   </li></tr>
+<tr>                   <h1>Calculate expected and observed probabilities</li></tr>
+<tr>                   expected = sum(y_train == outcome) / len(y_train)</li></tr>
+<tr>                   observed = sum(mask) / len(y_train)</li></tr>
+<tr>                   </li></tr>
+<tr>                   <h1>Adjust weights</li></tr>
+<tr>                   if observed > 0:</li></tr>
+<tr>                       weights[mask] = expected / observed</li></tr>
+<tr>       return weights</li></tr>
+<tr>   ```</li></tr>
+<tr></li></tr>
+<tr>2. **In-Processing Techniques**</li></tr>
+<tr>   ```python</li></tr>
+<tr>   <h1>Fairness constraint in the loss function</li></tr>
+<tr>   def fair_loss(y_true, y_pred, protected_attributes):</li></tr>
+<tr>       <h1>Base loss (e.g., binary cross-entropy)</li></tr>
+<tr>       base_loss = log_loss(y_true, y_pred)</li></tr>
+<tr>       </li></tr>
+<tr>       <h1>Fairness penalty (demographic parity)</li></tr>
+<tr>       male_mask = protected_attributes['gender'] == 'Male'</li></tr>
+<tr>       female_mask = protected_attributes['gender'] == 'Female'</li></tr>
+<tr>       </li></tr>
+<tr>       male_selection = np.mean(y_pred[male_mask])</li></tr>
+<tr>       female_selection = np.mean(y_pred[female_mask])</li></tr>
+<tr>       </li></tr>
+<tr>       fairness_penalty = abs(male_selection <li>female_selection)</li></tr>
+<tr>       </li></tr>
+<tr>       <h1>Combined loss with fairness constraint</li></tr>
+<tr>       alpha = 0.3  <h1>Fairness weight</li></tr>
+<tr>       combined_loss = base_loss + alpha * fairness_penalty</li></tr>
+<tr>       </li></tr>
+<tr>       return combined_loss</li></tr>
+<tr>   ```</li></tr>
+<tr></li></tr>
+<tr>3. **Post-Processing Techniques**</li></tr>
+<tr>   ```python</li></tr>
+<tr>   <h1>Group-specific threshold optimization</li></tr>
+<tr>   def optimize_thresholds(model, X_val, y_val, protected_val):</li></tr>
+<tr>       probas = model.predict_proba(X_val)[:,1]</li></tr>
+<tr>       thresholds = {}</li></tr>
+<tr>       </li></tr>
+<tr>       for gender in protected_val['gender'].unique():</li></tr>
+<tr>           gender_mask = protected_val['gender'] == gender</li></tr>
+<tr>           </li></tr>
+<tr>           best_threshold = 0.5  <h1>Default</li></tr>
+<tr>           best_balanced_accuracy = 0.0</li></tr>
+<tr>           </li></tr>
+<tr>           <h1>Try different thresholds</li></tr>
+<tr>           for threshold in np.arange(0.1, 0.9, 0.05):</li></tr>
+<tr>               preds = (probas[gender_mask] >= threshold).astype(int)</li></tr>
+<tr>               bal_acc = balanced_accuracy_score(y_val[gender_mask], preds)</li></tr>
+<tr>               </li></tr>
+<tr>               if bal_acc > best_balanced_accuracy:</li></tr>
+<tr>                   best_balanced_accuracy = bal_acc</li></tr>
+<tr>                   best_threshold = threshold</li></tr>
+<tr>           </li></tr>
+<tr>           thresholds[gender] = best_threshold</li></tr>
+<tr>       </li></tr>
+<tr>       return thresholds</li></tr>
+<tr>   ```</li></tr>
+<tr></li></tr>
+<tr>##<h1>Fairness Evaluation Methodology</li></tr>
+<tr></li></tr>
+<tr>The system evaluates fairness using the following metrics and methodology:</li></tr>
+<tr></li></tr>
+<tr>1. **Demographic Parity**</li></tr>
+<tr>   ```python</li></tr>
+<tr>   def demographic_parity_difference(y_pred, protected_attributes):</li></tr>
+<tr>       <h1>Create masks for different groups</li></tr>
+<tr>       male_mask = protected_attributes['gender'] == 'Male'</li></tr>
+<tr>       female_mask = protected_attributes['gender'] == 'Female'</li></tr>
+<tr>       </li></tr>
+<tr>       <h1>Calculate selection rates</li></tr>
+<tr>       male_selection_rate = y_pred[male_mask].mean()</li></tr>
+<tr>       female_selection_rate = y_pred[female_mask].mean()</li></tr>
+<tr>       </li></tr>
+<tr>       return male_selection_rate <li>female_selection_rate</li></tr>
+<tr>   ```</li></tr>
+<tr></li></tr>
+<tr>2. **Equal Opportunity**</li></tr>
+<tr>   ```python</li></tr>
+<tr>   def equal_opportunity_difference(y_true, y_pred, protected_attributes):</li></tr>
+<tr>       <h1>Create masks for different groups</li></tr>
+<tr>       male_mask = protected_attributes['gender'] == 'Male'</li></tr>
+<tr>       female_mask = protected_attributes['gender'] == 'Female'</li></tr>
+<tr>       </li></tr>
+<tr>       <h1>Calculate true positive rates</li></tr>
+<tr>       male_tpr = recall_score(y_true[male_mask], y_pred[male_mask])</li></tr>
+<tr>       female_tpr = recall_score(y_true[female_mask], y_pred[female_mask])</li></tr>
+<tr>       </li></tr>
+<tr>       return male_tpr <li>female_tpr</li></tr>
+<tr>   ```</li></tr>
+<tr></li></tr>
+<tr>3. **Intersectional Fairness**</li></tr>
+<tr>   ```python</li></tr>
+<tr>   def intersectional_disparities(y_pred, protected_attributes):</li></tr>
+<tr>       <h1>Create a DataFrame to store selection rates</li></tr>
+<tr>       group_rates = []</li></tr>
+<tr>       </li></tr>
+<tr>       <h1>Calculate selection rates for each intersection</li></tr>
+<tr>       for gender in protected_attributes['gender'].unique():</li></tr>
+<tr>           for ethnicity in protected_attributes['ethnicity'].unique():</li></tr>
+<tr>               mask = ((protected_attributes['gender'] == gender) & </li></tr>
+<tr>                       (protected_attributes['ethnicity'] == ethnicity))</li></tr>
+<tr>               </li></tr>
+<tr>               <h1>Skip if group is too small</li></tr>
+<tr>               if sum(mask) < 30:</li></tr>
+<tr>                   continue</li></tr>
+<tr>                   </li></tr>
+<tr>               selection_rate = y_pred[mask].mean()</li></tr>
+<tr>               group_rates.append({</li></tr>
+<tr>                   'Gender': gender,</li></tr>
+<tr>                   'Ethnicity': ethnicity,</li></tr>
+<tr>                   'Selection Rate': selection_rate,</li></tr>
+<tr>                   'Count': sum(mask)</li></tr>
+<tr>               })</li></tr>
+<tr>       </li></tr>
+<tr>       return pd.DataFrame(group_rates)</li></tr>
+<tr>   ```</li></tr>
+<tr>#<h1>References</li></tr>
+<tr>1. Mehrabi, N., Morstatter, F., Saxena, N., Lerman, K., & Galstyan, A. (2021). A survey on bias and fairness in machine learning. ACM Computing Surveys (CSUR), 54(6), 1-35.</li></tr>
+<tr></li></tr>
+<tr>2. Barocas, S., Hardt, M., & Narayanan, A. (2019). Fairness and machine learning. fairmlbook.org.</li></tr>
+<tr></li></tr>
+<tr>3. Kamiran, F., & Calders, T. (2012). Data preprocessing techniques for classification without discrimination. Knowledge and Information Systems, 33(1), 1-33.</li></tr>
+<tr></li></tr>
+<tr>4. Hardt, M., Price, E., & Srebro, N. (2016). Equality of opportunity in supervised learning. Advances in Neural Information Processing Systems, 29, 3315-3323.</li></tr>
+<tr></li></tr>
+<tr>5. Dwork, C., Hardt, M., Pitassi, T., Reingold, O., & Zemel, R. (2012). Fairness through awareness. Proceedings of the 3rd Innovations in Theoretical Computer Science Conference, 214-226.</li></tr>
+<tr></li></tr>
+<tr>6. Zafar, M. B., Valera, I., Gomez Rodriguez, M., & Gummadi, K. P. (2017). Fairness beyond disparate treatment & disparate impact: Learning classification without disparate mistreatment. Proceedings of the 26th International Conference on World Wide Web, 1171-1180.</li></tr>
+<tr></li></tr>
+<tr>7. Pleiss, G., Raghavan, M., Wu, F., Kleinberg, J., & Weinberger, K. Q. (2017). On fairness and calibration. Advances in Neural Information Processing Systems, 30, 5680-5689.</li></tr>
+<tr></li></tr>
+<tr>8. Feldman, M., Friedler, S. A., Moeller, J., Scheidegger, C., & Venkatasubramanian, S. (2015). Certifying and removing disparate impact. Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 259-268.</li></tr>
+<tr></li></tr>
+<tr>9. Crenshaw, K. (1989). Demarginalizing the intersection of race and sex: A Black feminist critique of antidiscrimination doctrine, feminist theory and antiracist politics. University of Chicago Legal Forum, 139-167.</li></tr>
+<tr></li></tr>
+<tr>10. Kearns, M., Neel, S., Roth, A., & Wu, Z. S. (2018). Preventing fairness gerrymandering: Auditing and learning for subgroup fairness. International Conference on Machine Learning, 2564-2572.</li></tr>
+<tr></li></tr>
+<tr>11. Holstein, K., Wortman Vaughan, J., Daumé III, H., Dudik, M., & Wallach, H. (2019). Improving fairness in machine learning systems: What do industry practitioners need? Proceedings of the 2019 CHI Conference on Human Factors in Computing Systems, 1-16.</li></tr>
+<tr></li></tr>
+<tr>12. Raghavan, M., Barocas, S., Kleinberg, J., & Levy, K. (2020). Mitigating bias in algorithmic hiring: Evaluating claims and practices. Proceedings of the 2020 Conference on Fairness, Accountability, and Transparency, 469-481.</li></tr>
+<tr></li></tr>
+<tr>13. Beutel, A., Chen, J., Doshi, T., Qian, H., Woodruff, A., Luu, C., ... & Chi, E. H. (2019). Putting fairness principles into practice: Challenges, metrics, and improvements. Proceedings of the 2019 AAAI/ACM Conference on AI, Ethics, and Society, 453-459.</li></tr>
+<tr></li></tr>
+<tr>14. Garg, S., Perot, V., Limtiaco, N., Taly, A., Chi, E. H., & Beutel, A. (2020). Counterfactual fairness in text classification through robustness. Proceedings of the 2020 AAAI/ACM Conference on AI, Ethics, and Society, 219-226.</li></tr>
+<tr></li></tr>
+<tr>15. Pessach, D., & Shmueli, E. (2020). Algorithmic fairness. arXiv preprint arXiv:2001.09784.
+            <div class="footer">
+                <p>Generated on: 2025-03-09 14:20:10</p>
+            </div>
+            </div>
+        </body>
+        </html>
+        
