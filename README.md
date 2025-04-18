@@ -155,13 +155,10 @@ When using this system, consider:
 4. **Regular auditing**: Continuously monitor for bias and unexpected effects
 5. **Human oversight**: Maintain appropriate human review of algorithmic decisions
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contributors
 
-[Your Name] - Initial work
+Eshwar Thota - Initial work
 
 ## Acknowledgments
 
